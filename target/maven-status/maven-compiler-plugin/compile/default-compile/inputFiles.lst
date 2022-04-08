@@ -1,0 +1,9 @@
+/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/repository/TutorialRepository.java
+/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/Initializer.java
+/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/model/Comment.java
+/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/TutorialApplication.java
+/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/controller/CommentController.java
+/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/model/Tutorial.java
+/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/repository/CommentRepository.java
+/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/exception/ResourceNotFoundException.java
+/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/controller/TutorialController.java
