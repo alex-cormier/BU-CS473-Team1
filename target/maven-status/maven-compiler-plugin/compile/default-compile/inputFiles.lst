@@ -1,9 +1,11 @@
-/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/repository/TutorialRepository.java
-/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/Initializer.java
-/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/model/Comment.java
-/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/TutorialApplication.java
-/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/controller/CommentController.java
-/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/model/Tutorial.java
-/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/repository/CommentRepository.java
-/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/exception/ResourceNotFoundException.java
-/Users/Walker/Desktop/CS/Java/Spring/tutorial/src/main/java/com/example/tutorial/controller/TutorialController.java
+/Users/Walker/Desktop/CS/2022 Spring/CS 473/Term Project/BU-CS473-Team1/src/main/java/com/cs473/spotlight/model/Task.java
+/Users/Walker/Desktop/CS/2022 Spring/CS 473/Term Project/BU-CS473-Team1/src/main/java/com/cs473/spotlight/repository/TaskRepository.java
+/Users/Walker/Desktop/CS/2022 Spring/CS 473/Term Project/BU-CS473-Team1/src/main/java/com/cs473/spotlight/model/Project.java
+/Users/Walker/Desktop/CS/2022 Spring/CS 473/Term Project/BU-CS473-Team1/src/main/java/com/cs473/spotlight/controller/TaskController.java
+/Users/Walker/Desktop/CS/2022 Spring/CS 473/Term Project/BU-CS473-Team1/src/main/java/com/cs473/spotlight/repository/ProjectRepository.java
+/Users/Walker/Desktop/CS/2022 Spring/CS 473/Term Project/BU-CS473-Team1/src/main/java/com/cs473/spotlight/model/User.java
+/Users/Walker/Desktop/CS/2022 Spring/CS 473/Term Project/BU-CS473-Team1/src/main/java/com/cs473/spotlight/repository/UserRepository.java
+/Users/Walker/Desktop/CS/2022 Spring/CS 473/Term Project/BU-CS473-Team1/src/main/java/com/cs473/spotlight/config/SecurityConfiguration.java
+/Users/Walker/Desktop/CS/2022 Spring/CS 473/Term Project/BU-CS473-Team1/src/main/java/com/cs473/spotlight/controller/ProjectController.java
+/Users/Walker/Desktop/CS/2022 Spring/CS 473/Term Project/BU-CS473-Team1/src/main/java/com/cs473/spotlight/SpotlightApplication.java
+/Users/Walker/Desktop/CS/2022 Spring/CS 473/Term Project/BU-CS473-Team1/src/main/java/com/cs473/spotlight/controller/UserController.java
