@@ -27,7 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
     }
 
-    @Bean
+    /*@Bean
     public RequestCache refererRequestCache() {
         return new HttpSessionRequestCache() {
             @Override
@@ -38,5 +38,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 }
             }
         };
-    }
+    }*/
 }
