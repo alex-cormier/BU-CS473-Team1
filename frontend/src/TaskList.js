@@ -66,10 +66,12 @@ class TaskList extends Component {
                 <AppNavbar/>
                 <Container fluid>
                     <div className="float-end">
+                        <Button color="primary" tag={Link} to={"/projects/" + this.props.match.params.projectId +
+                            "/" + this.props.match.params.projectName + "/users"}>See Project Members</Button>{' '}
                         <Button color="success" tag={Link} to={"/projects/" + this.props.match.params.projectId +
                             "/" + this.props.match.params.projectName + "/new"}>Add Task</Button>
                     </div>
-                    <h3>{this.props.match.params.projectName} Tasks</h3>
+                    <h3>{this.props.match.params.projectName} Dashboard</h3>
                     <Table className="mt-4">
                         <thead>
                         <tr>

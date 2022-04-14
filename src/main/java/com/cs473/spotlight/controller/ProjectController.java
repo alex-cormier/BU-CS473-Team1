@@ -12,9 +12,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -38,7 +36,12 @@ public class ProjectController {
     }
 
     //not sure if we need this - depends how user list is transferred in project JSON
-    //getUsersByProjectId()
+    @GetMapping("/projects/{id}/users")
+    public ResponseEntity<Set<User>> getUsersByProjectId(@PathVariable("id") Long id) {
+        Optional<Project> project = projectRepository.findById(id);
+        return project.map(response -> new ResponseEntity<>(response.getUsers(), HttpStatus.OK))
+                .orElse(new ResponseEntity<>(new HashSet(), HttpStatus.NO_CONTENT));
+    }
 
     @PostMapping("/projects")
     public ResponseEntity<Project> createProject(@RequestBody Project project,
@@ -46,11 +49,16 @@ public class ProjectController {
         Map<String, Object> details = principal.getAttributes();
         String userId = details.get("sub").toString();
 
-        User user = userRepository.findById(userId)
+        Optional<User> user = userRepository.findById(userId);
+        project.addUser(user.orElse(new User(userId, details.get("name").toString(), details.get("email").toString())));
+
+        return new ResponseEntity<>(projectRepository.save(project), HttpStatus.CREATED);
+
+        /*User user = userRepository.findById(userId)
                 .orElse(new User(userId, details.get("name").toString(), details.get("email").toString()));
         project.addUser(user);
 
-        return new ResponseEntity<>(projectRepository.save(project), HttpStatus.CREATED);
+        return new ResponseEntity<>(projectRepository.save(project), HttpStatus.CREATED);*/
     }
 
     @PutMapping("/projects/{id}")
@@ -82,6 +90,7 @@ public class ProjectController {
         if (user != null && project != null) {
             project.removeUser(user.getId());
             //maybe check is all users deleted to avoid lingering projects
+            projectRepository.save(project);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
