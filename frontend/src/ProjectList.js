@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
-import AppNavbar from './AppNavbar';
 import { Link, withRouter } from 'react-router-dom';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
@@ -57,6 +56,7 @@ class ProjectList extends Component {
                 </td>
                 <td>
                     <ButtonGroup>
+                    <Button size="sm" color="success" tag={Link} to={"/projects/" + project.id + "/" + project.name}>Tasks</Button>
                         <Button size="sm" color="primary" tag={Link} to={"/projects/" + project.id}>Edit</Button>
                         <Button size="sm" color="danger" onClick={() => this.remove(project.id)}>Delete</Button>
                     </ButtonGroup>
@@ -65,10 +65,12 @@ class ProjectList extends Component {
         });
 
         return (
-            <div>
-                <AppNavbar/>
-                <Container fluid>
-                    <div className="float-end">
+         
+                 
+                <Container className='Flex' >
+                    <br></br><br></br>
+                 <br></br><br></br>
+                    <div >
                         <Button color="success" tag={Link} to="/projects/new">Add Projects</Button>
                     </div>
                     <h3>My Projects</h3>
@@ -84,7 +86,7 @@ class ProjectList extends Component {
                         </tbody>
                     </Table>
                 </Container>
-            </div>
+          
         );
     }
 }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import AppNavbar from './AppNavbar';
 import { instanceOf } from 'prop-types';
 import { Cookies, withCookies } from 'react-cookie';
 
@@ -67,7 +66,8 @@ class ProjectEdit extends Component {
         const title = <h2>{item.id ? 'Edit Projects' : 'Add Projects'}</h2>;
 
         return <div>
-            <AppNavbar/>
+            <br></br><br></br>
+                <br></br><br></br>
             <Container>
                 {title}
                 <Form onSubmit={this.handleSubmit}>

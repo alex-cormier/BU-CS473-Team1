@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
-import AppNavbar from './AppNavbar';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
 
@@ -68,8 +67,9 @@ class TaskEdit extends Component {
         const title = <h2>{item.id ? 'Edit Task' : 'Add Task'}</h2>;
 
         return <div>
-            <AppNavbar/>
-            <Container>
+            <br></br><br></br>
+            <br></br><br></br>
+           
                 {title}
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
@@ -83,7 +83,7 @@ class TaskEdit extends Component {
                             "/" + this.props.match.params.projectName}>Cancel</Button>
                     </FormGroup>
                 </Form>
-            </Container>
+           
         </div>
     }
 }

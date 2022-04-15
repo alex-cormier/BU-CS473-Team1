@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Button, Container, Form, FormGroup, Input, Label, Table} from 'reactstrap';
-import AppNavbar from './AppNavbar';
 import { withRouter } from 'react-router-dom';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
@@ -102,7 +101,8 @@ class UserList extends Component {
 
         return (
             <div>
-                <AppNavbar/>
+                <br></br><br></br>
+                <br></br><br></br>
                 <Container>
                     <h2>Add Users</h2>
                     <Form onSubmit={this.handleSubmit}>
@@ -116,7 +116,7 @@ class UserList extends Component {
                         </FormGroup>
                     </Form>
                 </Container>
-                <Container fluid>
+                <Container >
                     <h2>{this.props.match.params.projectName} Users</h2>
                     <Table className="mt-4">
                         <thead>

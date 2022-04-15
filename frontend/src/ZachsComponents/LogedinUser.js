@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
-import AppNavbar from './AppNavbar';
+import '../App.css';
 import { Link } from 'react-router-dom';
 import { Button, Container } from 'reactstrap';
 import {withCookies} from "react-cookie";
 
-class Home extends Component {
+
+class LogedinUser extends Component {
     state = {
         isLoading: true,
         isAuthenticated: false,
@@ -49,28 +49,20 @@ class Home extends Component {
 
     render() {
         const message = this.state.user ?
-            <h2>Welcome, {this.state.user.name}!</h2> :
-            <p>Please log in to manage your Projects.</p>;
+            <div className='Username'>{this.state.user.name}</div> :
+            <p></p>;
 
-        const button = this.state.isAuthenticated ?
-            <div>
-                <Button color="link"><Link to="/projects">Manage Projects</Link></Button>
-                <br/>
-                <Button color="link" onClick={this.logout}>Logout</Button>
-            </div> :
-            <Button color="primary" onClick={this.login}>Login</Button>;
+       
 
         return (
             <div>
-              <br></br><br></br>
-                <br></br><br></br>
+                
                 <Container >
                     {message}
-                    {button}
                 </Container>
             </div>
         );
     }
 }
 
-export default withCookies(Home);
+export default withCookies(LogedinUser);
