@@ -7,7 +7,13 @@ import { Button} from 'reactstrap';
 import LogedinUser from './LogedinUser';
 
 
+
 function Sidebar() {
+
+    
+
+
+
     return (
         <SidebarContainer>
             <SidebarHeader>
@@ -26,14 +32,13 @@ function Sidebar() {
                     <div className="Flex">
                         <Button color="success" tag={Link} to="/projects"> Projects</Button>
                     </div>
+                    
 
                 </SidebarInfo>
                 <CreateIcon />
 
             </SidebarHeader>
-            <ProjectsDiv>
-                
-            </ProjectsDiv>
+          
         </SidebarContainer>
 
 
@@ -87,12 +92,4 @@ const SidebarInfo = styled.div`
 
         }
 
-`
-const ProjectsDiv = styled.div`
-    background-color: purple;
-    color: white;
-    flex: 0.3;
-    border-top: 1px solid #49274b;
-    max-width: 260px;
-    margin-top: 60px;
 `

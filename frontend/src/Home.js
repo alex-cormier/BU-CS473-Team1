@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
-import AppNavbar from './AppNavbar';
 import { Link } from 'react-router-dom';
 import { Button, Container } from 'reactstrap';
 import {withCookies} from "react-cookie";
@@ -64,7 +62,7 @@ class Home extends Component {
             <div>
               <br></br><br></br>
                 <br></br><br></br>
-                <Container >
+                <Container>
                     {message}
                     {button}
                 </Container>

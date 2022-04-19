@@ -54,7 +54,7 @@ class TaskList extends Component {
                     <ButtonGroup>
                         <Button size="sm" color="primary" tag={Link} to={"/projects/" +
                             this.props.match.params.projectId + "/" + this.props.match.params.projectName + "/" + task.id}>Edit</Button>
-                        <Button size="sm" color="danger" onClick={() => this.remove(task.id)}>Delete</Button>
+                        <Button size="sm" color="success" onClick={() => this.remove(task.id)}>Complete</Button>
                     </ButtonGroup>
                 </td>
             </tr>
