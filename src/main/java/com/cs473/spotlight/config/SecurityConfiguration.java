@@ -1,6 +1,7 @@
 package com.cs473.spotlight.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -27,7 +28,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
     }
 
-    /*@Bean
+    @Bean
+    @Profile("dev")
     public RequestCache refererRequestCache() {
         return new HttpSessionRequestCache() {
             @Override
@@ -38,5 +40,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 }
             }
         };
-    }*/
+    }
 }

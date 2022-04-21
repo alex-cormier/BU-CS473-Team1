@@ -45,14 +45,21 @@ public class ProjectController {
 
     @PostMapping("/projects")
     public ResponseEntity<Project> createProject(@RequestBody Project project,
-                                                 @AuthenticationPrincipal OAuth2User principal) {
-        Map<String, Object> details = principal.getAttributes();
+                                                 Principal principal
+                                                 /*@AuthenticationPrincipal OAuth2User principal*/) {
+        String userId = principal.getName();
+        User user = userRepository.findById(userId).orElse(null);
+        project.addUser(user);
+
+        return new ResponseEntity<>(projectRepository.save(project), HttpStatus.CREATED);
+
+        /*Map<String, Object> details = principal.getAttributes();
         String userId = details.get("sub").toString();
 
         Optional<User> user = userRepository.findById(userId);
         project.addUser(user.orElse(new User(userId, details.get("name").toString(), details.get("email").toString())));
 
-        return new ResponseEntity<>(projectRepository.save(project), HttpStatus.CREATED);
+        return new ResponseEntity<>(projectRepository.save(project), HttpStatus.CREATED);*/
 
         /*User user = userRepository.findById(userId)
                 .orElse(new User(userId, details.get("name").toString(), details.get("email").toString()));
@@ -66,12 +73,13 @@ public class ProjectController {
         Project project = projectRepository.findById(id).orElse(null);
         if (project != null) {
             project.setName(projectRequest.getName());
+            project.setDate(projectRequest.getDate());
             return new ResponseEntity<>(projectRepository.save(project), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/projects/{id}/users")
+    /*@PutMapping("/projects/{id}/users")
     public ResponseEntity<?> addUserToProject(@PathVariable("id") Long id, @RequestBody String email) {
         User user = userRepository.findByEmail(email).orElse(null);
         Project project = projectRepository.findById(id).orElse(null);
@@ -80,16 +88,21 @@ public class ProjectController {
             return new ResponseEntity<>(projectRepository.save(project), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
+    }*/
 
     @DeleteMapping("/projects/{projectId}/users/{userId}")
     public ResponseEntity<HttpStatus> deleteUserFromProject(@PathVariable("projectId") Long projectId,
-                                                             @PathVariable("userId") String userId) {
+                                                            @PathVariable("userId") String userId,
+                                                            Principal principal) {
         User user = userRepository.findById(userId).orElse(null);
-        Project project = projectRepository.findById(projectId).orElse(null);
+        Project project = projectRepository.findByIdAndUsersId(projectId, principal.getName()).orElse(null);
+
         if (user != null && project != null) {
+            //prevent deleting last user
+            if (project.getUsers().size() == 1)
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+
             project.removeUser(user.getId());
-            //maybe check is all users deleted to avoid lingering projects
             projectRepository.save(project);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

@@ -54,6 +54,8 @@ class Home extends Component {
             <div>
                 <Button color="link"><Link to="/projects">Manage Projects</Link></Button>
                 <br/>
+                <Button color="link"><Link to="/invitations">See Invitations</Link></Button>
+                <br/>
                 <Button color="link" onClick={this.logout}>Logout</Button>
             </div> :
             <Button color="primary" onClick={this.login}>Login</Button>;

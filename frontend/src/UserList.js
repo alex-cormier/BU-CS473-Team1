@@ -42,9 +42,9 @@ class UserList extends Component {
             },
             credentials: 'include'
         }).then(() => {
-            let updatedUsers = [...this.state.users].filter(i => i.id !== id);
-            this.setState({users: updatedUsers});
+            this.reloadUsers();
         });
+        //TRY TO CATCH ERROR WHEN PREVENTING DELETING LAST USER
     }
 
     async reloadUsers() {
@@ -68,6 +68,26 @@ class UserList extends Component {
         const {item, csrfToken} = this.state;
 
         //ADD TRY CATCH FOR INVALID EMAIL
+        await fetch(`/api/invitations/${this.props.match.params.projectId}`, {
+            method: 'POST',
+            headers: {
+                'X-XSRF-TOKEN': csrfToken,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: item.email,
+            credentials: 'include'
+        }).then(() => {
+            this.setState({item: this.emptyItem})
+        });
+    }
+
+    /*async handleSubmit(event) {
+        event.preventDefault();
+        event.target.reset();
+        const {item, csrfToken} = this.state;
+
+        //ADD TRY CATCH FOR INVALID EMAIL
         await fetch(`/api/projects/${this.props.match.params.projectId}/users`, {
             method: 'PUT',
             headers: {
@@ -82,7 +102,7 @@ class UserList extends Component {
         }).then(() => {
             this.setState({item: this.emptyItem})
         });
-    }
+    }*/
 
     render() {
         const {item, users, isLoading} = this.state;

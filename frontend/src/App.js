@@ -5,6 +5,7 @@ import ProjectList from './ProjectList';
 import ProjectEdit from "./ProjectEdit";
 import TaskList from "./TaskList";
 import TaskEdit from "./TaskEdit";
+import InvitationList from "./InvitationList";
 import {CookiesProvider} from "react-cookie";
 import Header from './ZachsComponents/Header';
 import styled from "styled-components"
@@ -19,21 +20,20 @@ class App extends Component {
         <CookiesProvider>
            <EntireBody>
           <Router>
-           <>
-           <Header />
+            <Header />
             <Sidebar />
             <AppBody>
-              
-              <Switch>
-                <Route path='/' exact={true} component={Home}/>
-                <Route path='/projects' exact={true} component={ProjectList}/>
-                <Route exact path='/projects/:projectId' component={ProjectEdit}/>
-                <Route exact path='/projects/:projectId/:projectName' component={TaskList}/>
-                <Route exact path ='/projects/:projectId/:projectName/users' component={UserList}/>
-                <Route exact path='/projects/:projectId/:projectName/:taskId' component={TaskEdit}/>
-             </Switch>
+            <Switch>
+              <Route path='/' exact={true} component={Home}/>
+              <Route path='/invitations' exact={true} component={InvitationList}/>
+              <Route path='/projects' exact={true} component={ProjectList}/>
+              <Route exact path='/projects/:projectId' component={ProjectEdit}/>
+              <Route exact path='/projects/:projectId/:projectName' component={TaskList}/>
+              <Route exact path='/projects/:projectId/:projectName/users' component={UserList}/>
+              <Route exact path='/projects/:projectId/:projectName/:taskId' component={TaskEdit}/>
+            </Switch>
             </AppBody>
-            </>
+
           </Router>
           </EntireBody>
         </CookiesProvider>

@@ -21,7 +21,10 @@ class ProjectList extends Component {
 
         fetch('api/projects', {credentials: 'include'})
             .then(response => response.json())
-            .then(data => this.setState({projects: data, isLoading: false}))
+            .then(data => {
+                data.sort((a, b) => new Date(a.date) - new Date(b.date));
+                this.setState({projects: data, isLoading: false});
+            })
             .catch(() => this.props.history.push('/projects'));
     }
 
@@ -55,6 +58,9 @@ class ProjectList extends Component {
                     </Button>
                 </td>
                 <td>
+                    {new Intl.DateTimeFormat('en-US').format(new Date(project.date.replace(/-/g, '\/')))}
+                </td>
+                <td>
                     <ButtonGroup>
                     <Button size="sm" color="warning" tag={Link} to={"/projects/" + project.id + "/" + project.name}>Tasks</Button>
                         <Button size="sm" color="primary" tag={Link} to={"/projects/" + project.id}>Edit</Button>
@@ -77,7 +83,8 @@ class ProjectList extends Component {
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="90%">Name</th>
+                            <th width="35%">Project Name</th>
+                            <th width="35%">Due Date</th>
                             <th width="10%">Actions</th>
                         </tr>
                         </thead>
