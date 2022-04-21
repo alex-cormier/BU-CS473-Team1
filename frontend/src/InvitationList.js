@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button, ButtonGroup, Container, Table } from 'reactstrap';
-import AppNavbar from './AppNavbar';
 import { withRouter } from 'react-router-dom';
 import { instanceOf } from 'prop-types';
 import { withCookies, Cookies } from 'react-cookie';
@@ -62,7 +61,7 @@ class InvitationList extends Component {
 
         return (
             <div>
-                <AppNavbar/>
+                <br></br><br></br><br></br><br></br>
                 <Container fluid>
                     <h3>My Invitations</h3>
                     <Table className="mt-4">
