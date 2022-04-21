@@ -3,6 +3,7 @@ package com.cs473.spotlight.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ public class Project {
     @GeneratedValue
     private Long id;
     private String name;
+    private LocalDate date;
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
@@ -37,6 +39,14 @@ public class Project {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public Set<User> getUsers() {

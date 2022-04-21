@@ -22,7 +22,10 @@ class TaskList extends Component {
 
         fetch(`/api/projects/${this.props.match.params.projectId}/tasks`, {credentials: 'include'})
             .then(response => response.json())
-            .then(data => this.setState({tasks: data, isLoading: false}))
+            .then(data => {
+                data.sort((a, b) => new Date(a.date) - new Date(b.date));
+                this.setState({tasks: data, isLoading: false})
+            })
             .catch(() => this.props.history.push('/projects'));
     }
 
@@ -52,6 +55,9 @@ class TaskList extends Component {
             return <tr key={task.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{task.name}</td>
                 <td>
+                    {new Intl.DateTimeFormat('en-US').format(new Date(task.date.replace(/-/g, '\/')))}
+                </td>
+                <td>
                     <ButtonGroup>
                         <Button size="sm" color="primary" tag={Link} to={"/projects/" +
                             this.props.match.params.projectId + "/" + this.props.match.params.projectName + "/" + task.id}>Edit</Button>
@@ -75,7 +81,8 @@ class TaskList extends Component {
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="90%">Tasks</th>
+                            <th width="35%">Task Name</th>
+                            <th width="35%">Due Date</th>
                             <th width="10%">Actions</th>
                         </tr>
                         </thead>

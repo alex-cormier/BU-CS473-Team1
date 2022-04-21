@@ -73,6 +73,7 @@ public class ProjectController {
         Project project = projectRepository.findById(id).orElse(null);
         if (project != null) {
             project.setName(projectRequest.getName());
+            project.setDate(projectRequest.getDate());
             return new ResponseEntity<>(projectRepository.save(project), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
