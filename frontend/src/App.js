@@ -7,6 +7,7 @@ import ProjectEdit from "./ProjectEdit";
 import TaskList from "./TaskList";
 import TaskEdit from "./TaskEdit";
 import UserList from "./UserList";
+import InvitationList from "./InvitationList";
 import {CookiesProvider} from "react-cookie";
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
           <Router>
             <Switch>
               <Route path='/' exact={true} component={Home}/>
+              <Route path='/invitations' exact={true} component={InvitationList}/>
               <Route path='/projects' exact={true} component={ProjectList}/>
               <Route exact path='/projects/:projectId' component={ProjectEdit}/>
               <Route exact path='/projects/:projectId/:projectName' component={TaskList}/>

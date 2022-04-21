@@ -1,5 +1,7 @@
 package com.cs473.spotlight.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +22,7 @@ public class Project {
     @JoinTable(name = "project_user",
             joinColumns = {@JoinColumn(name = "project_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Set<User> users = new HashSet<>();
 
     //public Project() {}
