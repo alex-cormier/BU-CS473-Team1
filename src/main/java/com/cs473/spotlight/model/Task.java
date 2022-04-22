@@ -14,6 +14,7 @@ public class Task {
     private Long id;
     private String name;
     private LocalDate date;
+    private boolean completed;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "project_id", nullable = false)
@@ -38,6 +39,14 @@ public class Task {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     public Project getProject() {

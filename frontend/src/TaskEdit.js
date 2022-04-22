@@ -12,7 +12,8 @@ class TaskEdit extends Component {
 
     emptyItem = {
         name: '',
-        date: new Date()
+        date: new Date(),
+        completed: false
     };
 
     constructor(props) {
@@ -81,7 +82,7 @@ class TaskEdit extends Component {
                 {title}
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
-                        <Label for="name">Name</Label>
+                        <Label for="name">Task Name</Label>
                         <Input type="text" name="name" id="name" value={item.name || ''}
                                onChange={this.handleChange} autoComplete="name"/>
                     </FormGroup>
