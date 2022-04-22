@@ -76,8 +76,6 @@ class ProjectEdit extends Component {
         const title = <h2>{item.id ? 'Edit Projects' : 'Add Projects'}</h2>;
 
         return <div>
-            <br></br><br></br>
-                <br></br><br></br>
             <Container>
                 {title}
                 <Form onSubmit={this.handleSubmit}>

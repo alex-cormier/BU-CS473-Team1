@@ -121,8 +121,6 @@ class UserList extends Component {
 
         return (
             <div>
-                <br></br><br></br>
-                <br></br><br></br>
                 <Container>
                     <h2>Add Users</h2>
                     <Form onSubmit={this.handleSubmit}>
@@ -136,7 +134,7 @@ class UserList extends Component {
                         </FormGroup>
                     </Form>
                 </Container>
-                <Container >
+                <Container>
                     <h2>{this.props.match.params.projectName} Users</h2>
                     <Table className="mt-4">
                         <thead>

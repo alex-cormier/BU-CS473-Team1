@@ -71,29 +71,24 @@ class ProjectList extends Component {
         });
 
         return (
-         
-                 
-                <Container className='Flex' >
-                    <br></br><br></br>
-                 <br></br><br></br>
-                    <div >
-                        <Button color="success" tag={Link} to="/projects/new">Add Projects</Button>
-                    </div>
-                    <h3>My Projects</h3>
-                    <Table className="mt-4">
-                        <thead>
-                        <tr>
-                            <th width="35%">Project Name</th>
-                            <th width="35%">Due Date</th>
-                            <th width="10%">Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {projectList}
-                        </tbody>
-                    </Table>
-                </Container>
-          
+            <Container fluid>
+                <div className="float-end">
+                    <Button color="success" tag={Link} to="/projects/new">Add Projects</Button>
+                </div>
+                <h1>My Projects</h1>
+                <Table className="mt-4">
+                    <thead>
+                    <tr>
+                        <th width="35%">Project Name</th>
+                        <th width="35%">Due Date</th>
+                        <th width="10%">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {projectList}
+                    </tbody>
+                </Table>
+            </Container>
         );
     }
 }

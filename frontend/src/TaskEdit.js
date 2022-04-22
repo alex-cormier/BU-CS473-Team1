@@ -77,9 +77,7 @@ class TaskEdit extends Component {
         const title = <h2>{item.id ? 'Edit Task' : 'Add Task'}</h2>;
 
         return <div>
-            <br></br><br></br>
-            <br></br><br></br>
-           
+            <Container>
                 {title}
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
@@ -103,7 +101,7 @@ class TaskEdit extends Component {
                             "/" + this.props.match.params.projectName}>Cancel</Button>
                     </FormGroup>
                 </Form>
-           
+            </Container>
         </div>
     }
 }

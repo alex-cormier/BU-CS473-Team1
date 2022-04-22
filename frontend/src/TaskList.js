@@ -77,46 +77,42 @@ class TaskList extends Component {
 
 
         return (
-            <Container className="flex">
-                <br></br><br></br>
-                <br></br>
-                
-                    <div>
-                        <Button color="primary" tag={Link} to={"/projects/" + this.props.match.params.projectId +
-                            "/" + this.props.match.params.projectName + "/users"}>See Project Members</Button>{' '}
-                        <Button color="success" tag={Link} to={"/projects/" + this.props.match.params.projectId +
-                            "/" + this.props.match.params.projectName + "/new"}>Add Task</Button>
-                    </div>
-                    <h3>{this.props.match.params.projectName} Dashboard</h3>
-                    <br></br>
-                    <h1>Todo</h1>
-                    <Table className="mt-4">
-                        <thead>
-                        <tr>
-                            <th width="35%">Task Name</th>
-                            <th width="35%">Due Date</th>
-                            <th width="10%">Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {taskList}
-                        </tbody>
-                    </Table>
+            <Container fluid>
+                <div className="float-end">
+                    <Button color="primary" tag={Link} to={"/projects/" + this.props.match.params.projectId +
+                        "/" + this.props.match.params.projectName + "/users"}>See Project Members</Button>{' '}
+                    <Button color="success" tag={Link} to={"/projects/" + this.props.match.params.projectId +
+                        "/" + this.props.match.params.projectName + "/new"}>Add Task</Button>
+                </div>
+                <h1>{this.props.match.params.projectName} Dashboard</h1>
+                <h2>In Progress</h2>
+                <Table className="mt-4">
+                    <thead>
+                    <tr>
+                        <th width="35%">Task Name</th>
+                        <th width="35%">Due Date</th>
+                        <th width="10%">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {taskList}
+                    </tbody>
+                </Table>
 
 
 
-                    <br></br>
-                    <h1>Complete</h1>
-                    <Table className="mt-4">
-                        <thead>
-                        <tr>
-                            <th width="100%">Task Name</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {taskList1}
-                        </tbody>
-                    </Table>
+
+                <h2>Complete</h2>
+                <Table className="mt-4">
+                    <thead>
+                    <tr>
+                        <th width="100%">Task Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {taskList1}
+                    </tbody>
+                </Table>
                 
             </Container>
         );
