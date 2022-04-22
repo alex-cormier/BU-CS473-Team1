@@ -60,23 +60,20 @@ class InvitationList extends Component {
         });
 
         return (
-            <div>
-                <br></br><br></br><br></br><br></br>
-                <Container fluid>
-                    <h3>My Invitations</h3>
-                    <Table className="mt-4">
-                        <thead>
-                        <tr>
-                            <th width="90%">Projects</th>
-                            <th width="10%">Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {invitationList}
-                        </tbody>
-                    </Table>
-                </Container>
-            </div>
+            <Container fluid>
+                <h1>My Invitations</h1>
+                <Table className="mt-4">
+                    <thead>
+                    <tr>
+                        <th width="90%">Projects</th>
+                        <th width="10%">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {invitationList}
+                    </tbody>
+                </Table>
+            </Container>
         );
     }
 }
