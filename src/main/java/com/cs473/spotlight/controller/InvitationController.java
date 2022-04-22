@@ -36,6 +36,9 @@ public class InvitationController {
         Project project = projectRepository.findById(id).orElse(null);
 
         if (user != null && project != null) {
+            if (invitationRepository.existsByProjectIdAndUserId(id, user.getId()) || project.getUsers().contains(user))
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+
             return new ResponseEntity<>(invitationRepository.save(new Invitation(project, user)), HttpStatus.OK);
         }
 
