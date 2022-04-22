@@ -66,6 +66,16 @@ class TaskList extends Component {
             </tr>
         });
 
+
+        //Need to change on backend
+        const taskList1 = tasks.map(task => {
+            return <tr key={task.id}>
+                <td style={{whiteSpace: 'nowrap'}}>{task.name}</td>
+                
+            </tr>
+        });
+
+
         return (
             <Container className="flex">
                 <br></br><br></br>
@@ -78,6 +88,8 @@ class TaskList extends Component {
                             "/" + this.props.match.params.projectName + "/new"}>Add Task</Button>
                     </div>
                     <h3>{this.props.match.params.projectName} Dashboard</h3>
+                    <br></br>
+                    <h1>Todo</h1>
                     <Table className="mt-4">
                         <thead>
                         <tr>
@@ -88,6 +100,21 @@ class TaskList extends Component {
                         </thead>
                         <tbody>
                         {taskList}
+                        </tbody>
+                    </Table>
+
+
+
+                    <br></br>
+                    <h1>Complete</h1>
+                    <Table className="mt-4">
+                        <thead>
+                        <tr>
+                            <th width="100%">Task Name</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {taskList1}
                         </tbody>
                     </Table>
                 
