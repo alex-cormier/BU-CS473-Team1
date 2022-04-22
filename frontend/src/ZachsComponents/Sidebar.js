@@ -32,6 +32,10 @@ function Sidebar() {
                     <div className="Flex">
                         <Button color="success" tag={Link} to="/projects"> Projects</Button>
                     </div>
+                    <div>
+                        <br></br>
+                <Button color="success" tag={Link} to="/invitations">Invitations</Button>
+                </div>
                     
 
                 </SidebarInfo>
