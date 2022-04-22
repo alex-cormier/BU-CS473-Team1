@@ -16,7 +16,13 @@ class UserList extends Component {
     constructor(props) {
         super(props);
         const {cookies} = props;
-        this.state = {item: this.emptyItem, users: [], csrfToken: cookies.get('XSRF-TOKEN'), isLoading: true};
+        this.state = {
+            item: this.emptyItem,
+            users: [],
+            error: '',
+            csrfToken: cookies.get('XSRF-TOKEN'),
+            isLoading: true
+        };
         this.remove = this.remove.bind(this);
         this.reloadUsers = this.reloadUsers.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -44,13 +50,13 @@ class UserList extends Component {
         }).then(() => {
             this.reloadUsers();
         });
-        //TRY TO CATCH ERROR WHEN PREVENTING DELETING LAST USER
     }
 
     async reloadUsers() {
         await fetch(`/api/projects/${this.props.match.params.projectId}/users`, {credentials: 'include'})
             .then(response => response.json())
             .then(data => this.setState({users: data}))
+            .catch(() => this.props.history.push('/projects'));
     }
 
     handleChange(event) {
@@ -67,42 +73,22 @@ class UserList extends Component {
         event.target.reset();
         const {item, csrfToken} = this.state;
 
-        //ADD TRY CATCH FOR INVALID EMAIL
-        await fetch(`/api/invitations/${this.props.match.params.projectId}`, {
-            method: 'POST',
-            headers: {
-                'X-XSRF-TOKEN': csrfToken,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: item.email,
-            credentials: 'include'
-        }).then(() => {
-            this.setState({item: this.emptyItem})
-        });
+        try {
+            const response = await (await fetch(`/api/invitations/${this.props.match.params.projectId}`, {
+                method: 'POST',
+                headers: {
+                    'X-XSRF-TOKEN': csrfToken,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: item.email,
+                credentials: 'include'
+            })).json();
+            this.setState({item: this.emptyItem, error: ''});
+        } catch (error) {
+            this.setState({error: 'This user does not exist or is already invited. Please try again.'});
+        }
     }
-
-    /*async handleSubmit(event) {
-        event.preventDefault();
-        event.target.reset();
-        const {item, csrfToken} = this.state;
-
-        //ADD TRY CATCH FOR INVALID EMAIL
-        await fetch(`/api/projects/${this.props.match.params.projectId}/users`, {
-            method: 'PUT',
-            headers: {
-                'X-XSRF-TOKEN': csrfToken,
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: item.email,
-            credentials: 'include'
-        }).then(() => {
-            this.reloadUsers();
-        }).then(() => {
-            this.setState({item: this.emptyItem})
-        });
-    }*/
 
     render() {
         const {item, users, isLoading} = this.state;
@@ -121,10 +107,9 @@ class UserList extends Component {
 
         return (
             <div>
-                <br></br><br></br>
-                <br></br><br></br>
                 <Container>
                     <h2>Add Users</h2>
+                    <p style={{color: "red"}}>{this.state.error}</p>
                     <Form onSubmit={this.handleSubmit}>
                         <FormGroup>
                             <Label for="email">Email</Label>
@@ -136,7 +121,7 @@ class UserList extends Component {
                         </FormGroup>
                     </Form>
                 </Container>
-                <Container >
+                <Container>
                     <h2>{this.props.match.params.projectName} Users</h2>
                     <Table className="mt-4">
                         <thead>

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Button, Container } from 'reactstrap';
 import {withCookies} from "react-cookie";
 
 
 class LogedinUser extends Component {
     state = {
         isLoading: true,
-        isAuthenticated: false,
         user: undefined
     };
 
@@ -14,8 +12,6 @@ class LogedinUser extends Component {
         super(props);
         const {cookies} = props;
         this.state.csrfToken = cookies.get('XSRF-TOKEN');
-        this.login = this.login.bind(this);
-        this.logout = this.logout.bind(this);
     }
 
     async componentDidMount() {
@@ -28,36 +24,14 @@ class LogedinUser extends Component {
         }
     }
 
-    login() {
-        let port = (window.location.port ? ':' + window.location.port : '');
-        if (port === ':3000') {
-            port = ':8080';
-        }
-        window.location.href = '//' + window.location.hostname + port + '/private';
-    }
-
-    logout() {
-        fetch('/api/logout', {method: 'POST', credentials: 'include',
-            headers: {'X-XSRF-TOKEN': this.state.csrfToken}}).then(res => res.json())
-            .then(response => {
-                window.location.href = response.logoutUrl + "?id_token_hint=" +
-                    response.idToken + "&post_logout_redirect_uri=" + window.location.origin;
-            });
-    }
-
     render() {
         const message = this.state.user ?
-            <div className='Username'>{this.state.user.name}</div> :
-            <p></p>;
-
-       
+            this.state.user.name :
+            '';
 
         return (
-            <div>
-                
-                <Container >
-                    {message}
-                </Container>
+            <div >
+                {message}
             </div>
         );
     }

@@ -27,8 +27,6 @@ public class Project {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Set<User> users = new HashSet<>();
 
-    //public Project() {}
-
     public Long getId() {
         return id;
     }
@@ -59,14 +57,12 @@ public class Project {
 
     public void addUser(User user) {
         this.users.add(user);
-        //user.getProjects().add(this);
     }
 
     public void removeUser(String id) {
         User user = this.users.stream().filter(t -> t.getId().equals(id)).findFirst().orElse(null);
         if (user != null) {
             this.users.remove(user);
-            //user.getProjects().remove(this); //maybe add this to inside of if statement
         }
     }
 }

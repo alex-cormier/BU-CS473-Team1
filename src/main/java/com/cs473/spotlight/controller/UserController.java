@@ -12,7 +12,6 @@ import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,12 +31,6 @@ public class UserController {
 
     @GetMapping("/api/user")
     public ResponseEntity<?> getUser(@AuthenticationPrincipal OAuth2User user) {
-        /*if (user == null) {
-            return new ResponseEntity<>("", HttpStatus.OK);
-        } else {
-            return ResponseEntity.ok().body(user.getAttributes());
-        }*/
-
         if (user == null) {
             return new ResponseEntity<>("", HttpStatus.OK);
         } else {

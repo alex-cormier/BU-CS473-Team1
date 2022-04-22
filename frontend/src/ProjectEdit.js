@@ -76,13 +76,11 @@ class ProjectEdit extends Component {
         const title = <h2>{item.id ? 'Edit Projects' : 'Add Projects'}</h2>;
 
         return <div>
-            <br></br><br></br>
-                <br></br><br></br>
             <Container>
                 {title}
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
-                        <Label for="name">Name</Label>
+                        <Label for="name">Project Name</Label>
                         <Input type="text" name="name" id="name" value={item.name || ''}
                                onChange={this.handleChange} autoComplete="name"/>
                     </FormGroup>

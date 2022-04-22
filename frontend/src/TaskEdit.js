@@ -12,7 +12,8 @@ class TaskEdit extends Component {
 
     emptyItem = {
         name: '',
-        date: new Date()
+        date: new Date(),
+        completed: false
     };
 
     constructor(props) {
@@ -77,13 +78,11 @@ class TaskEdit extends Component {
         const title = <h2>{item.id ? 'Edit Task' : 'Add Task'}</h2>;
 
         return <div>
-            <br></br><br></br>
-            <br></br><br></br>
-           
+            <Container>
                 {title}
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
-                        <Label for="name">Name</Label>
+                        <Label for="name">Task Name</Label>
                         <Input type="text" name="name" id="name" value={item.name || ''}
                                onChange={this.handleChange} autoComplete="name"/>
                     </FormGroup>
@@ -103,7 +102,7 @@ class TaskEdit extends Component {
                             "/" + this.props.match.params.projectName}>Cancel</Button>
                     </FormGroup>
                 </Form>
-           
+            </Container>
         </div>
     }
 }

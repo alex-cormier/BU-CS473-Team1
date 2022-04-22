@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Container } from 'reactstrap';
+import { Button } from 'reactstrap';
 import {withCookies} from "react-cookie";
 
 class Home extends Component {
@@ -47,8 +47,11 @@ class Home extends Component {
 
     render() {
         const message = this.state.user ?
-            <h2>Welcome, {this.state.user.name}!</h2> :
-            <p>Please log in to manage your Projects.</p>;
+            <h1>Welcome to Spotlight, {this.state.user.name}!</h1> :
+            <div>
+                <h1>Welcome to Spotlight!</h1>
+                <p>Please log in to manage your Projects.</p>
+            </div>;
 
         const button = this.state.isAuthenticated ?
             <div>
@@ -62,12 +65,8 @@ class Home extends Component {
 
         return (
             <div>
-              <br></br><br></br>
-                <br></br><br></br>
-                <Container>
-                    {message}
-                    {button}
-                </Container>
+                {message}
+                {button}
             </div>
         );
     }

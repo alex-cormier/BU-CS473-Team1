@@ -7,8 +7,6 @@ import com.cs473.spotlight.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -35,37 +33,21 @@ public class ProjectController {
                 .orElse(new ResponseEntity<>(HttpStatus.FORBIDDEN));
     }
 
-    //not sure if we need this - depends how user list is transferred in project JSON
     @GetMapping("/projects/{id}/users")
-    public ResponseEntity<Set<User>> getUsersByProjectId(@PathVariable("id") Long id) {
-        Optional<Project> project = projectRepository.findById(id);
+    public ResponseEntity<?> getUsersByProjectId(@PathVariable("id") Long id, Principal principal) {
+        Optional<Project> project = projectRepository.findByIdAndUsersId(id, principal.getName());
         return project.map(response -> new ResponseEntity<>(response.getUsers(), HttpStatus.OK))
-                .orElse(new ResponseEntity<>(new HashSet(), HttpStatus.NO_CONTENT));
+                .orElse(new ResponseEntity<>(HttpStatus.FORBIDDEN));
     }
 
     @PostMapping("/projects")
     public ResponseEntity<Project> createProject(@RequestBody Project project,
-                                                 Principal principal
-                                                 /*@AuthenticationPrincipal OAuth2User principal*/) {
+                                                 Principal principal) {
         String userId = principal.getName();
         User user = userRepository.findById(userId).orElse(null);
         project.addUser(user);
 
         return new ResponseEntity<>(projectRepository.save(project), HttpStatus.CREATED);
-
-        /*Map<String, Object> details = principal.getAttributes();
-        String userId = details.get("sub").toString();
-
-        Optional<User> user = userRepository.findById(userId);
-        project.addUser(user.orElse(new User(userId, details.get("name").toString(), details.get("email").toString())));
-
-        return new ResponseEntity<>(projectRepository.save(project), HttpStatus.CREATED);*/
-
-        /*User user = userRepository.findById(userId)
-                .orElse(new User(userId, details.get("name").toString(), details.get("email").toString()));
-        project.addUser(user);
-
-        return new ResponseEntity<>(projectRepository.save(project), HttpStatus.CREATED);*/
     }
 
     @PutMapping("/projects/{id}")
@@ -78,17 +60,6 @@ public class ProjectController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
-    /*@PutMapping("/projects/{id}/users")
-    public ResponseEntity<?> addUserToProject(@PathVariable("id") Long id, @RequestBody String email) {
-        User user = userRepository.findByEmail(email).orElse(null);
-        Project project = projectRepository.findById(id).orElse(null);
-        if (user != null && project != null) {
-            project.addUser(user);
-            return new ResponseEntity<>(projectRepository.save(project), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }*/
 
     @DeleteMapping("/projects/{projectId}/users/{userId}")
     public ResponseEntity<HttpStatus> deleteUserFromProject(@PathVariable("projectId") Long projectId,

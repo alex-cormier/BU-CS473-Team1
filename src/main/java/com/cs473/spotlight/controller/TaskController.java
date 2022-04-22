@@ -32,7 +32,7 @@ public class TaskController {
     }
 
     @GetMapping("/projects/{projectId}/tasks/{taskId}")
-    public ResponseEntity<?> getCommentById(@PathVariable("projectId") Long projectId,
+    public ResponseEntity<?> getTaskById(@PathVariable("projectId") Long projectId,
                                             @PathVariable("taskId") Long taskId, Principal principal) {
         Project project = projectRepository.findByIdAndUsersId(projectId, principal.getName()).orElse(null);
         if (project != null) {
@@ -60,6 +60,19 @@ public class TaskController {
         Project project = projectRepository.findByIdAndUsersId(projectId, principal.getName()).orElse(null);
         if (project != null) {
             return new ResponseEntity<>(taskRepository.save(task), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+    }
+
+    @PutMapping("/projects/{projectId}/tasks/{taskId}")
+    public ResponseEntity<?> completeTask(@PathVariable("projectId") Long projectId,
+                                             @PathVariable("taskId") Long taskId, Principal principal) {
+        Project project = projectRepository.findByIdAndUsersId(projectId, principal.getName()).orElse(null);
+        Task task = taskRepository.findById(taskId).orElse(null);
+        if (project != null && task != null) {
+            task.setCompleted(true);
+            taskRepository.save(task);
+            return new ResponseEntity<>(task, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.FORBIDDEN);
     }
