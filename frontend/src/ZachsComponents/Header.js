@@ -12,7 +12,7 @@ function Header() {
     <HeaderContainer>
      <HeaderLeft>
        <HeaderAvatar/>
-       <LogedinUser />
+       <UserContainer><LogedinUser /></UserContainer>
        <AccessTimeIcon />
         
      </HeaderLeft>
@@ -32,6 +32,10 @@ function Header() {
 }
 
 export default Header;
+
+const UserContainer = styled.div`
+padding: 5px;
+`
 
 const HeaderContainer = styled.div`
 display: flex;

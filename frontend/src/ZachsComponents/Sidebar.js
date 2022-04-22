@@ -18,7 +18,7 @@ function Sidebar() {
         <SidebarContainer>
             <SidebarHeader>
                 <SidebarInfo>
-                    <h2>Team 1</h2>
+                    <h2>Spotlight</h2>
                     <h3>
                         <FiberManualRecordIcon />
                          <LogedinUser />
@@ -74,16 +74,16 @@ const SidebarHeader = styled.div`
 `
 const SidebarInfo = styled.div`
     flex: 1;
-
+    
         > h2 {
-            font-size: 15px;
+            font-size: 20px;
             font-weight: 900;
             margin-bottom: 5px;
             color: gray;
         }
         > h3{
             display: flex;
-            font-size: 10px;
+            font-size: 17px;
             font-weight: 400;
             align-items: center;
         }
