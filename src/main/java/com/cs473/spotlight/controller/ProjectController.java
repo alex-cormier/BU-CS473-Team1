@@ -7,8 +7,6 @@ import com.cs473.spotlight.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -35,7 +33,6 @@ public class ProjectController {
                 .orElse(new ResponseEntity<>(HttpStatus.FORBIDDEN));
     }
 
-    //not sure if we need this - depends how user list is transferred in project JSON
     @GetMapping("/projects/{id}/users")
     public ResponseEntity<?> getUsersByProjectId(@PathVariable("id") Long id, Principal principal) {
         Optional<Project> project = projectRepository.findByIdAndUsersId(id, principal.getName());
@@ -45,8 +42,7 @@ public class ProjectController {
 
     @PostMapping("/projects")
     public ResponseEntity<Project> createProject(@RequestBody Project project,
-                                                 Principal principal
-                                                 /*@AuthenticationPrincipal OAuth2User principal*/) {
+                                                 Principal principal) {
         String userId = principal.getName();
         User user = userRepository.findById(userId).orElse(null);
         project.addUser(user);

@@ -50,7 +50,6 @@ class UserList extends Component {
         }).then(() => {
             this.reloadUsers();
         });
-        //TRY TO CATCH ERROR WHEN PREVENTING DELETING LAST USER
     }
 
     async reloadUsers() {

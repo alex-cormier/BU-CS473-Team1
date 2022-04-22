@@ -1,8 +1,6 @@
 package com.cs473.spotlight.model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -13,15 +11,6 @@ public class User {
     private String name;
     @Column(name = "email")
     private String email;
-
-    /*@ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
-            mappedBy = "users")
-    @JsonIgnore
-    private Set<Project> projects = new HashSet<>();*/
 
     public User() {}
 
@@ -50,12 +39,4 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    /*public Set<Project> getProjects() {
-        return projects;
-    }
-
-    public void setProjects(Set<Project> projects) {
-        this.projects = projects;
-    }*/
 }
