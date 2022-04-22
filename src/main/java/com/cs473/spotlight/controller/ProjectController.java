@@ -37,10 +37,10 @@ public class ProjectController {
 
     //not sure if we need this - depends how user list is transferred in project JSON
     @GetMapping("/projects/{id}/users")
-    public ResponseEntity<Set<User>> getUsersByProjectId(@PathVariable("id") Long id) {
-        Optional<Project> project = projectRepository.findById(id);
+    public ResponseEntity<?> getUsersByProjectId(@PathVariable("id") Long id, Principal principal) {
+        Optional<Project> project = projectRepository.findByIdAndUsersId(id, principal.getName());
         return project.map(response -> new ResponseEntity<>(response.getUsers(), HttpStatus.OK))
-                .orElse(new ResponseEntity<>(new HashSet(), HttpStatus.NO_CONTENT));
+                .orElse(new ResponseEntity<>(HttpStatus.FORBIDDEN));
     }
 
     @PostMapping("/projects")
