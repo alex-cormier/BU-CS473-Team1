@@ -57,6 +57,7 @@ class UserList extends Component {
         await fetch(`/api/projects/${this.props.match.params.projectId}/users`, {credentials: 'include'})
             .then(response => response.json())
             .then(data => this.setState({users: data}))
+            .catch(() => this.props.history.push('/projects'));
     }
 
     handleChange(event) {
