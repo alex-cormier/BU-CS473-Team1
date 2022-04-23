@@ -20,10 +20,10 @@ Ex:`cd ~/git/team1`
 
 Then, build docker:
 
-`docker-compose build`
+Ex: `docker build -t Spotlight .`
 
 Next, run docker:
 
-`docker-compose up`
+Ex: `docker run --name Spotlight -p 8080:8080 Spotlight`
 
 Finally, you can go to `localhost:8080` in a web browser to see the content of the webserver.
